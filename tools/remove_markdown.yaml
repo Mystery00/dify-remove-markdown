@@ -12,13 +12,13 @@ description:
     pt_BR: 移除LLM输出的Markdown格式
   llm: 移除LLM输出的Markdown格式
 parameters:
-  - name: query
+  - name: text
     type: string
     required: true
     label:
-      en_US: Query string
-      zh_Hans: 查询语句
-      pt_BR: Query string
+      en_US: Text
+      zh_Hans: 文本
+      pt_BR: Texto
     human_description:
       en_US: 移除LLM输出的Markdown格式
       zh_Hans: 移除LLM输出的Markdown格式
