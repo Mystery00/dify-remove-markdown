@@ -1,0 +1,17 @@
+identity:
+  author: mystery0
+  name: remove_markdown
+  label:
+    en_US: remove_markdown
+    zh_Hans: remove_markdown
+    pt_BR: remove_markdown
+  description:
+    en_US: 移除LLM输出的Markdown格式
+    zh_Hans: 移除LLM输出的Markdown格式
+    pt_BR: 移除LLM输出的Markdown格式
+  icon: icon.svg
+tools:
+  - tools/remove_markdown.yaml
+extra:
+  python:
+    source: provider/remove_markdown.py

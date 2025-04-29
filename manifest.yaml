@@ -1,0 +1,37 @@
+version: 0.0.1
+type: plugin
+author: mystery0
+name: remove_markdown
+label:
+  en_US: remove_markdown
+  ja_JP: remove_markdown
+  zh_Hans: remove_markdown
+  pt_BR: remove_markdown
+description:
+  en_US: 移除LLM输出的Markdown格式
+  ja_JP: 移除LLM输出的Markdown格式
+  zh_Hans: 移除LLM输出的Markdown格式
+  pt_BR: 移除LLM输出的Markdown格式
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    tool:
+      enabled: true
+    app:
+      enabled: true
+plugins:
+  tools:
+    - provider/remove_markdown.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+created_at: 2025-04-29T10:37:19.594174+08:00
+privacy: PRIVACY.md
+verified: false
