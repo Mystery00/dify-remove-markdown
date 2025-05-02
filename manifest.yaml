@@ -3,15 +3,15 @@ type: plugin
 author: mystery0
 name: remove_markdown
 label:
-  en_US: remove_markdown
-  ja_JP: remove_markdown
-  zh_Hans: remove_markdown
-  pt_BR: remove_markdown
+  en_US: Remove Markdown
+  ja_JP: Markdown形式を削除
+  zh_Hans: 移除Markdown格式
+  pt_BR: Remover Markdown
 description:
-  en_US: 移除LLM输出的Markdown格式
-  ja_JP: 移除LLM输出的Markdown格式
+  en_US: Remove Markdown formatting from LLM output
+  ja_JP: LLM出力からMarkdown形式を削除します
   zh_Hans: 移除LLM输出的Markdown格式
-  pt_BR: 移除LLM输出的Markdown格式
+  pt_BR: Remove a formatação Markdown da saída LLM
 icon: icon.svg
 resource:
   memory: 268435456
