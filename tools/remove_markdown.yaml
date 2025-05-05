@@ -2,14 +2,14 @@ identity:
   name: remove_markdown
   author: mystery0
   label:
-    en_US: remove_markdown
-    zh_Hans: remove_markdown
-    pt_BR: remove_markdown
+    en_US: Remove Markdown
+    zh_Hans: 移除Markdown格式
+    pt_BR: Remover Markdown
 description:
   human:
-    en_US: 移除LLM输出的Markdown格式
+    en_US: Remove Markdown formatting from LLM output
     zh_Hans: 移除LLM输出的Markdown格式
-    pt_BR: 移除LLM输出的Markdown格式
+    pt_BR: Remove a formatação Markdown da saída LLM
   llm: 移除LLM输出的Markdown格式
 parameters:
   - name: text

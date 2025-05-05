@@ -1,4 +1,4 @@
-version: 0.0.3
+version: 0.0.4
 type: plugin
 author: mystery0
 name: remove_markdown
@@ -24,7 +24,7 @@ plugins:
   tools:
     - provider/remove_markdown.yaml
 meta:
-  version: 0.0.3
+  version: 0.0.4
   arch:
     - amd64
     - arm64
