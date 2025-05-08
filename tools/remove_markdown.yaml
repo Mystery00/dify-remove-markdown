@@ -20,10 +20,10 @@ parameters:
       zh_Hans: 文本
       pt_BR: Texto
     human_description:
-      en_US: 移除LLM输出的Markdown格式
-      zh_Hans: 移除LLM输出的Markdown格式
-      pt_BR: 移除LLM输出的Markdown格式
-    llm_description: 移除LLM输出的Markdown格式
+      en_US: Text that needs Markdown formatting removed
+      zh_Hans: 需要执行Markdown移除操作的文本
+      pt_BR: Texto que precisa ter a formatação Markdown removida
+    llm_description: 需要执行Markdown移除操作的文本
     form: llm
 extra:
   python:
