@@ -58,10 +58,10 @@ jobs:
       - name: Prepare and create PR
         run: |
           # Use variable for package name
-          PACKAGE_NAME="${{ steps.get_basic_info.outputs.plugin_name }}.difypkg"
+          PACKAGE_NAME="${{ steps.get_basic_info.outputs.plugin_name }}-${{ steps.get_basic_info.outputs.version }}.difypkg"
           # Move the packaged file to the target directory using variables
           mkdir -p dify-plugins/${{ steps.get_basic_info.outputs.author }}/${{ steps.get_basic_info.outputs.plugin_name }}
-          mv "$PACKAGE_NAME" dify-plugins/${{ steps.get_basic_info.outputs.author }}/${{ steps.get_basic_info.outputs.plugin_name }}/
+          mv "$PACKAGE_NAME" "dify-plugins/${{ steps.get_basic_info.outputs.author }}/${{ steps.get_basic_info.outputs.plugin_name }}/${{ steps.get_basic_info.outputs.plugin_name }}.difypkg"
           # Enter the target repository directory
           cd dify-plugins
           # Configure git
