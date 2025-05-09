@@ -47,3 +47,56 @@ jobs:
             release version ${{ steps.get_basic_info.outputs.version }}
           files: |
             ${{ steps.get_basic_info.outputs.plugin_name }}-${{ steps.get_basic_info.outputs.version }}.difypkg
+      - name: Checkout target repo
+        uses: actions/checkout@v4
+        with:
+          repository: Mystery00/dify-plugins
+          path: dify-plugins
+          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          fetch-depth: 1
+          persist-credentials: true
+      - name: Prepare and create PR
+        run: |
+          # Use variable for package name
+          PACKAGE_NAME="${{ steps.get_basic_info.outputs.plugin_name }}-${{ steps.get_basic_info.outputs.version }}.difypkg"
+          # Move the packaged file to the target directory using variables
+          mkdir -p dify-plugins/${{ steps.get_basic_info.outputs.author }}/${{ steps.get_basic_info.outputs.plugin_name }}
+          mv "$PACKAGE_NAME" dify-plugins/${{ steps.get_basic_info.outputs.author }}/${{ steps.get_basic_info.outputs.plugin_name }}/
+          # Enter the target repository directory
+          cd dify-plugins
+          # Configure git
+          git config user.name "Mystery0"
+          git config user.email "mystery0dyl520@gmail.com"
+
+          # Ensure we are on the latest main branch
+          git fetch origin main
+          git checkout main
+          git pull origin main
+          # Create and switch to a new branch using variables and new naming convention
+          BRANCH_NAME="bump-${{ steps.get_basic_info.outputs.plugin_name }}-plugin-${{ steps.get_basic_info.outputs.version }}"
+          git checkout -b "$BRANCH_NAME"
+          # Add and commit changes (using git add .)
+          git add .
+          git status # for debugging
+          # Use variables in commit message
+          git commit -m "bump ${{ steps.get_basic_info.outputs.plugin_name }} plugin to version ${{ steps.get_basic_info.outputs.version }}"
+
+          # Push to remote (use force just in case the branch existed before from a failed run)
+          git push -u origin "$BRANCH_NAME" --force
+
+          # Confirm branch has been pushed and wait for sync (GitHub API might need a moment)
+          git branch -a
+          echo "Waiting for branch to sync..."
+          sleep 10  # Wait 10 seconds for branch sync
+      - name: Create PR via GitHub API
+        env:
+          GH_TOKEN: ${{ secrets.PLUGIN_ACTION }} # Use the provided token for authentication
+        run: |
+          gh pr create \
+            --repo langgenius/dify-plugins \
+            --head "${{ steps.get_basic_info.outputs.author }}:${{ steps.get_basic_info.outputs.plugin_name }}-${{ steps.get_basic_info.outputs.version }}" \
+            --base main \
+            --title "bump ${{ steps.get_basic_info.outputs.plugin_name }} plugin to version ${{ steps.get_basic_info.outputs.version }}" \
+            --body "bump ${{ steps.get_basic_info.outputs.plugin_name }} plugin package to version ${{ steps.get_basic_info.outputs.version }}
+            Changes:
+            - Updated plugin package file" || echo "PR already exists or creation skipped." # Handle cases where PR already exists

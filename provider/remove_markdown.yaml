@@ -3,12 +3,8 @@ identity:
   name: remove_markdown
   label:
     en_US: Remove Markdown
-    zh_Hans: 移除Markdown格式
-    pt_BR: Remover Markdown
   description:
     en_US: Remove Markdown formatting from LLM output
-    zh_Hans: 移除LLM输出的Markdown格式
-    pt_BR: Remove a formatação Markdown da saída LLM
   icon: icon.svg
 tools:
   - tools/remove_markdown.yaml

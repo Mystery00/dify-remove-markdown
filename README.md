@@ -1,12 +1,12 @@
 ## remove_markdown
 
 **Author:** mystery0
-**Version:** 0.0.3
+**Version:** 0.0.6
 **Type:** tool
 
 ### Description
 
-移除LLM输出的Markdown格式
+Removed the Markdown format from the LLM output
 
 ### How To Install
 
