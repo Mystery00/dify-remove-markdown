@@ -48,11 +48,11 @@ jobs:
           files: |
             ${{ steps.get_basic_info.outputs.plugin_name }}-${{ steps.get_basic_info.outputs.version }}.difypkg
       - name: Checkout target repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
         with:
           repository: Mystery00/dify-plugins
           path: dify-plugins
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+          token: ${{ secrets.PLUGIN_ACTION }}
           fetch-depth: 1
           persist-credentials: true
       - name: Prepare and create PR
@@ -90,7 +90,7 @@ jobs:
           sleep 10  # Wait 10 seconds for branch sync
       - name: Create PR via GitHub API
         env:
-          GH_TOKEN: ${{ secrets.PLUGIN_ACTION }} # Use the provided token for authentication
+          GH_TOKEN: ${{ secrets.PLUGIN_ACTION }}
         run: |
           gh pr create \
             --repo langgenius/dify-plugins \
