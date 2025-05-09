@@ -83,20 +83,3 @@ jobs:
 
           # Push to remote (use force just in case the branch existed before from a failed run)
           git push -u origin "$BRANCH_NAME" --force
-
-          # Confirm branch has been pushed and wait for sync (GitHub API might need a moment)
-          git branch -a
-          echo "Waiting for branch to sync..."
-          sleep 10  # Wait 10 seconds for branch sync
-      - name: Create PR via GitHub API
-        env:
-          GH_TOKEN: ${{ secrets.PLUGIN_ACTION }}
-        run: |
-          gh pr create \
-            --repo Mystery00/dify-plugins \
-            --head "${{ steps.get_basic_info.outputs.author }}:${{ steps.get_basic_info.outputs.plugin_name }}-${{ steps.get_basic_info.outputs.version }}" \
-            --base main \
-            --title "bump ${{ steps.get_basic_info.outputs.plugin_name }} plugin to version ${{ steps.get_basic_info.outputs.version }}" \
-            --body "bump ${{ steps.get_basic_info.outputs.plugin_name }} plugin package to version ${{ steps.get_basic_info.outputs.version }}
-            Changes:
-            - Updated plugin package file" || echo "PR already exists or creation skipped." # Handle cases where PR already exists
